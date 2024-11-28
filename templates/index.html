@@ -4,11 +4,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-        <title>Document</title>
+        <title>Index</title>
     </head>
     <body>
         <h1>Bienvenido a mi blog</h1>
         <p>Blog</p>
+        {% include 'nav.html' %}
         <a href="..\app.py">freecodecamp</a>
         <img src="{{ url_for('static', filename='img/jorgeav527.PNG') }}" alt="jorge" width="50" height="60">
         <form action="/add/user">
