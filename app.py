@@ -1,4 +1,10 @@
 from flask import Flask, render_template
+import sqlite3
+
+def get_db_connection():
+    conn = sqlite3.connect("database.db")
+    conn.row_factory = sqlite3.Row
+    return conn
 
 app = Flask(__name__)
 
@@ -17,6 +23,15 @@ def home():
 @app.route("/about", methods=["GET"])
 def about():
     return render_template('about.html')
+
+
+@app.route("/post", methods=["GET"])
+def get_all_posts():
+    conn = get_db_connection()
+    posts = conn.execute('SELECT * FROM posts').fetchall()
+    print(posts)
+    conn.close()
+    return render_template('post/posts.html', posts=posts)
 
 # Iniciar el servidor
 if __name__ == '__main__':
